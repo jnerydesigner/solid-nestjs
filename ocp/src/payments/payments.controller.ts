@@ -11,6 +11,6 @@ export class PaymentsController {
   constructor(private readonly paymentService: PaymentsService) {}
   @Post()
   pay(@Body() body: PayDTO) {
-    this.paymentService.processPayments(body.type, body.amount);
+    return this.paymentService.processPayments(body.type, body.amount);
   }
 }
