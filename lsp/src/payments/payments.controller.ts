@@ -3,7 +3,7 @@ import { PaymentsService } from './payments.service';
 
 type PayDTO = {
   type: string;
-  amount: number;
+  amount: string;
 };
 
 @Controller('payments')
@@ -11,6 +11,7 @@ export class PaymentsController {
   constructor(private readonly paymentService: PaymentsService) {}
   @Post()
   pay(@Body() body: PayDTO) {
-    return this.paymentService.processPayments(body.type, body.amount);
+    const numberFormated = parseFloat(body.amount.replace(',', '.'));
+    return this.paymentService.processPayments(body.type, numberFormated);
   }
 }
